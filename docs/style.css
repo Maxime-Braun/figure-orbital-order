@@ -6,6 +6,7 @@
   --card: rgba(255, 255, 255, 0.78);
   --stroke: rgba(27, 36, 48, 0.14);
   --accent: #0f6bff;
+  --accent-2: #19b6a4;
 }
 
 * {
@@ -34,7 +35,7 @@ body {
 }
 
 .container {
-  max-width: 920px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 48px 20px 64px;
 }
@@ -70,6 +71,105 @@ body {
   box-shadow: 0 14px 36px rgba(15, 40, 80, 0.08);
 }
 
+.workspace {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.panel h2 {
+  margin: 0 0 12px;
+}
+
+label {
+  display: block;
+  margin: 8px 0 4px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink);
+  font: inherit;
+  padding: 8px 10px;
+}
+
+button {
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(120deg, var(--accent), #2d8fff);
+  color: #fff;
+  border: none;
+}
+
+button:hover {
+  filter: brightness(1.04);
+}
+
+.double,
+.triple,
+.buttons {
+  display: grid;
+  gap: 8px;
+}
+
+.double {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.triple {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.buttons {
+  margin-top: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.buttons .wide {
+  grid-column: 1 / -1;
+  background: linear-gradient(120deg, var(--accent-2), #12a0d9);
+}
+
+.checklist {
+  margin-top: 6px;
+}
+
+.checklist label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 6px 0;
+}
+
+.checklist input {
+  width: auto;
+}
+
+.plot {
+  min-height: 72vh;
+}
+
+.graph {
+  width: 100%;
+  height: 74vh;
+}
+
+.status {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
 .card h2 {
   margin: 0 0 10px;
   font-size: 1.35rem;
@@ -99,7 +199,36 @@ body {
   font-size: 0.86rem;
 }
 
+.foot .btn {
+  margin-top: 0;
+}
+
 code {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.9em;
+}
+
+@media (max-width: 1080px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    order: 1;
+  }
+
+  .plot {
+    order: 2;
+    min-height: 62vh;
+  }
+
+  .graph {
+    height: 64vh;
+  }
+}
+
+@media (max-width: 620px) {
+  .triple {
+    grid-template-columns: 1fr;
+  }
 }

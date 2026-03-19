@@ -8,36 +8,127 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
     <div class="bg-grid" aria-hidden="true"></div>
     <main class="container">
       <header class="hero">
-        <p class="kicker">GitHub Pages Build</p>
+        <p class="kicker">GitHub Pages Orbital Tool</p>
         <h1>Figure Orbital Order</h1>
-        <p class="subhead">A static companion page for the Dash orbital visualization project.</p>
+        <p class="subhead">Interactive orbital editor running fully in your browser.</p>
       </header>
 
-      <section class="card">
-        <h2>Project Repository</h2>
-        <p>Source code and deployment assets are available on GitHub.</p>
-        <a class="btn" href="https://github.com/Maxime-Braun/figure-orbital-order" target="_blank" rel="noreferrer">Open Repository</a>
-      </section>
+      <section class="workspace">
+        <aside class="panel card">
+          <h2>Controls</h2>
 
-      <section class="card">
-        <h2>Run The Full Interactive App</h2>
-        <p>The complete orbital editor uses a Python Dash backend and runs locally or on a Python host.</p>
-        <ol>
-          <li>Clone the repository.</li>
-          <li>Create and activate a Python virtual environment.</li>
-          <li>Install dependencies with <code>pip install -r requirements.txt</code>.</li>
-          <li>Run <code>python FigureOrbitalOrder.py</code>.</li>
-        </ol>
+          <label for="orbitalType">Orbital</label>
+          <select id="orbitalType"></select>
+
+          <div class="triple">
+            <div>
+              <label for="xPos">X</label>
+              <input id="xPos" type="number" value="0" step="0.1">
+            </div>
+            <div>
+              <label for="yPos">Y</label>
+              <input id="yPos" type="number" value="0" step="0.1">
+            </div>
+            <div>
+              <label for="zPos">Z</label>
+              <input id="zPos" type="number" value="0" step="0.1">
+            </div>
+          </div>
+
+          <div class="triple">
+            <div>
+              <label for="rotX">Rot X</label>
+              <input id="rotX" type="number" value="0" step="1">
+            </div>
+            <div>
+              <label for="rotY">Rot Y</label>
+              <input id="rotY" type="number" value="0" step="1">
+            </div>
+            <div>
+              <label for="rotZ">Rot Z</label>
+              <input id="rotZ" type="number" value="0" step="1">
+            </div>
+          </div>
+
+          <div class="double">
+            <div>
+              <label for="colorPos">+ Color</label>
+              <input id="colorPos" type="text" value="red">
+            </div>
+            <div>
+              <label for="colorNeg">- Color</label>
+              <input id="colorNeg" type="text" value="blue">
+            </div>
+          </div>
+
+          <div class="double">
+            <div>
+              <label for="phase">Phase</label>
+              <select id="phase">
+                <option value="1">+1</option>
+                <option value="-1">-1</option>
+              </select>
+            </div>
+            <div>
+              <label for="multipoleKind">Multipole</label>
+              <select id="multipoleKind">
+                <option value="electric">Electric</option>
+                <option value="magnetic">Magnetic</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="checklist">
+            <label><input id="previewToggle" type="checkbox" checked> Preview Orbital</label>
+            <label><input id="mirrorXY" type="checkbox"> Mirror XY (z -> -z)</label>
+            <label><input id="mirrorXZ" type="checkbox"> Mirror XZ (y -> -y)</label>
+            <label><input id="mirrorYZ" type="checkbox"> Mirror YZ (x -> -x)</label>
+          </div>
+
+          <div class="triple">
+            <div>
+              <label for="mirrorXyZ">XY plane z</label>
+              <input id="mirrorXyZ" type="number" value="0" step="0.1">
+            </div>
+            <div>
+              <label for="mirrorXzY">XZ plane y</label>
+              <input id="mirrorXzY" type="number" value="0" step="0.1">
+            </div>
+            <div>
+              <label for="mirrorYzX">YZ plane x</label>
+              <input id="mirrorYzX" type="number" value="0" step="0.1">
+            </div>
+          </div>
+
+          <label for="siteSelect">Placed Orbitals</label>
+          <select id="siteSelect"></select>
+
+          <div class="buttons">
+            <button id="addBtn">Add</button>
+            <button id="swapBtn">Swap</button>
+            <button id="undoBtn">Undo</button>
+            <button id="trashBtn">Trash</button>
+            <button id="clearBtn" class="wide">Clear All</button>
+          </div>
+
+          <p id="status" class="status">Ready.</p>
+        </aside>
+
+        <section class="plot card">
+          <div id="orbitalGraph" class="graph"></div>
+        </section>
       </section>
 
       <footer class="foot">
-        <span>Published with GitHub Pages</span>
+        <a class="btn" href="https://github.com/Maxime-Braun/figure-orbital-order" target="_blank" rel="noreferrer">Open Repository</a>
       </footer>
     </main>
+    <script src="app.js"></script>
   </body>
 </html>
