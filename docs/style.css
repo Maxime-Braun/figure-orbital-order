@@ -63,7 +63,7 @@ body {
 
 .card {
   margin-top: 22px;
-  padding: 20px;
+  padding: 14px;
   border: 1px solid var(--stroke);
   border-radius: 16px;
   background: var(--card);
@@ -74,31 +74,40 @@ body {
 .workspace {
   margin-top: 22px;
   display: grid;
-  grid-template-columns: 320px minmax(0, 1fr);
-  gap: 14px;
+  grid-template-columns: 272px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.panel {
+  align-self: start;
+  position: sticky;
+  top: 10px;
+  max-height: calc(100vh - 20px);
+  overflow: auto;
 }
 
 .panel h2 {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
+  font-size: 1.04rem;
 }
 
 label {
   display: block;
-  margin: 8px 0 4px;
+  margin: 5px 0 3px;
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.79rem;
 }
 
 input,
 select,
 button {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--stroke);
   background: rgba(255, 255, 255, 0.85);
   color: var(--ink);
-  font: inherit;
-  padding: 8px 10px;
+  font-size: 0.85rem;
+  padding: 6px 8px;
 }
 
 button {
@@ -117,7 +126,7 @@ button:hover {
 .triple,
 .buttons {
   display: grid;
-  gap: 8px;
+  gap: 6px;
 }
 
 .double {
@@ -129,7 +138,7 @@ button:hover {
 }
 
 .buttons {
-  margin-top: 10px;
+  margin-top: 8px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -139,14 +148,14 @@ button:hover {
 }
 
 .checklist {
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .checklist label {
   display: flex;
   gap: 8px;
   align-items: center;
-  margin: 6px 0;
+  margin: 4px 0;
 }
 
 .checklist input {
@@ -163,10 +172,10 @@ button:hover {
 }
 
 .status {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.82rem;
+  font-size: 0.72rem;
   line-height: 1.35;
 }
 
@@ -208,12 +217,15 @@ code {
   font-size: 0.9em;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 900px) {
   .workspace {
     grid-template-columns: 1fr;
   }
 
   .panel {
+    position: static;
+    max-height: none;
+    overflow: visible;
     order: 1;
   }
 
